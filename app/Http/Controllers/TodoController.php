@@ -34,10 +34,15 @@ class TodoController extends Controller
     public function destroy(TODO $todo)
     {
         $todo->delete(); 
-
-
         return redirect("/");
     }
+
+    public function clear()
+{
+    Todo::whereNotNull('id')->delete();
+    return response()->json(['message' => 'To-Do list cleared successfully.']);
+}
+
 
 
 }
